@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  audio_video_progress_bar:
+  playback_progress_bar:
     path: ../
   just_audio: ^0.9.5
   rxdart: ^0.27.0

@@ -1,4 +1,4 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:playback_progress_bar/playback_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter_test/flutter_test.dart';

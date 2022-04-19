@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
+import 'package:playback_progress_bar/playback_progress_bar.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
 
