@@ -22,6 +22,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<ThemeVariation>(
@@ -43,12 +44,14 @@ var themeNotifier = ValueNotifier<ThemeVariation>(
 
 class ThemeVariation {
   const ThemeVariation(this.color, this.brightness);
+
   final MaterialColor color;
   final Brightness brightness;
 }
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
+
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
 }
@@ -479,6 +482,7 @@ class DurationState {
     required this.buffered,
     this.total,
   });
+
   final Duration progress;
   final Duration buffered;
   final Duration? total;
