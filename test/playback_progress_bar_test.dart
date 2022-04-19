@@ -6,20 +6,20 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   testWidgets('ProgressBar widget exists', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const ProgressBar(
+      const PlaybackProgressBar(
         progress: Duration.zero,
         total: Duration(minutes: 5),
       ),
     );
 
-    final progressBarFinder = find.byType(ProgressBar);
+    final progressBarFinder = find.byType(PlaybackProgressBar);
     expect(progressBarFinder, findsOneWidget);
   });
 
   testWidgets('ProgressBar widget properties exists',
       (WidgetTester tester) async {
     await tester.pumpWidget(
-      ProgressBar(
+      PlaybackProgressBar(
         progress: Duration.zero,
         total: const Duration(minutes: 5),
         buffered: const Duration(minutes: 1),
@@ -43,7 +43,7 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     expect(progressBar.progress, Duration.zero);
@@ -71,7 +71,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           timeLabelLocation: TimeLabelLocation.below,
@@ -79,10 +79,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(34.0));
   });
@@ -91,7 +91,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           timeLabelLocation: TimeLabelLocation.above,
@@ -99,10 +99,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(34.0));
   });
@@ -111,7 +111,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           timeLabelLocation: TimeLabelLocation.sides,
@@ -119,10 +119,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(20.0));
   });
@@ -131,7 +131,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           timeLabelLocation: TimeLabelLocation.none,
@@ -139,10 +139,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(20.0));
   });
@@ -151,17 +151,17 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
         ),
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(34.0));
   });
@@ -170,7 +170,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           thumbRadius: 30,
@@ -179,10 +179,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(60.0));
   });
@@ -192,7 +192,7 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(
       const Center(
-        child: ProgressBar(
+        child: PlaybackProgressBar(
           progress: Duration.zero,
           total: Duration(minutes: 5),
           thumbRadius: 5,
@@ -201,10 +201,10 @@ void main() {
       ),
     );
 
-    ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
-    final baseSize = tester.getSize(find.byType(ProgressBar));
+    final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
     expect(baseSize.width, equals(800.0));
     expect(baseSize.height, equals(14.0));
   });
@@ -214,7 +214,7 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const Center(
-          child: ProgressBar(
+          child: PlaybackProgressBar(
             progress: Duration.zero,
             total: Duration(minutes: 5),
             timeLabelPadding: 10,
@@ -223,10 +223,10 @@ void main() {
         ),
       );
 
-      ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
-      final baseSize = tester.getSize(find.byType(ProgressBar));
+      final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
       expect(baseSize.width, equals(800.0));
       expect(baseSize.height, equals(44.0));
     });
@@ -235,7 +235,7 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const Center(
-          child: ProgressBar(
+          child: PlaybackProgressBar(
             progress: Duration.zero,
             total: Duration(minutes: 5),
             timeLabelPadding: 10,
@@ -244,10 +244,10 @@ void main() {
         ),
       );
 
-      ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
-      final baseSize = tester.getSize(find.byType(ProgressBar));
+      final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
       expect(baseSize.width, equals(800.0));
       expect(baseSize.height, equals(44.0));
     });
@@ -256,7 +256,7 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const Center(
-          child: ProgressBar(
+          child: PlaybackProgressBar(
             progress: Duration.zero,
             total: Duration(minutes: 5),
             timeLabelPadding: 10,
@@ -265,10 +265,10 @@ void main() {
         ),
       );
 
-      ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
-      final baseSize = tester.getSize(find.byType(ProgressBar));
+      final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
       expect(baseSize.width, equals(800.0));
       expect(baseSize.height, equals(20.0));
     });
@@ -277,7 +277,7 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const Center(
-          child: ProgressBar(
+          child: PlaybackProgressBar(
             progress: Duration.zero,
             total: Duration(minutes: 5),
             timeLabelPadding: 10,
@@ -286,10 +286,10 @@ void main() {
         ),
       );
 
-      ProgressBar progressBar = tester.firstWidget(find.byType(ProgressBar));
+      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
-      final baseSize = tester.getSize(find.byType(ProgressBar));
+      final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
       expect(baseSize.width, equals(800.0));
       expect(baseSize.height, equals(20.0));
     });
@@ -303,7 +303,7 @@ void main() {
       int dragUpdateCount = 0;
       int dragEndCount = 0;
       await tester.pumpWidget(
-        ProgressBar(
+        PlaybackProgressBar(
           progress: Duration.zero,
           total: const Duration(minutes: 5),
           onSeek: (duration) {
@@ -322,7 +322,7 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(ProgressBar), const Offset(-100, 0));
+      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(seekCount, 1);
       expect(dragStartCount, 1);
       expect(dragUpdateCount, 2);
@@ -338,7 +338,7 @@ void main() {
         Center(
           child: SizedBox(
             width: 200,
-            child: ProgressBar(
+            child: PlaybackProgressBar(
               progress: Duration.zero,
               total: const Duration(minutes: 5),
               onSeek: (duration) {
@@ -356,7 +356,7 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(ProgressBar), const Offset(-100, 0));
+      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(onSeekDuration, Duration.zero);
       expect(onDragStartDuration, const Duration(minutes: 2, seconds: 30));
       expect(onDragUpdateDurations[0],
@@ -372,7 +372,7 @@ void main() {
         Center(
           child: SizedBox(
             width: 200,
-            child: ProgressBar(
+            child: PlaybackProgressBar(
               progress: Duration.zero,
               total: const Duration(minutes: 5),
               onDragStart: (details) {
@@ -387,7 +387,7 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(ProgressBar), const Offset(-100, 0));
+      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(onDragStartDetails.globalPosition, const Offset(400.0, 300.0));
       expect(onDragStartDetails.localPosition, const Offset(100.0, 17.0));
       expect(onDragDetails[0].globalPosition, const Offset(380.0, 300.0));

@@ -66,14 +66,14 @@ enum BarCapShape {
 /// This widget does not itself play audio or video content, but you can
 /// use it in conjunction with an audio plugin. It is a more convenient
 /// replacement for the Flutter Slider widget.
-class ProgressBar extends LeafRenderObjectWidget {
+class PlaybackProgressBar extends LeafRenderObjectWidget {
   /// You must set the current audio or video duration [progress] and also
   /// the [total] duration. Optionally set the [buffered] content progress
   /// as well.
   ///
   /// When a user drags the thumb to a new location you can be notified
   /// by the [onSeek] callback so that you can update your audio/video player.
-  const ProgressBar({
+  const PlaybackProgressBar({
     Key? key,
     required this.progress,
     required this.total,
@@ -217,7 +217,7 @@ class ProgressBar extends LeafRenderObjectWidget {
   ///
   /// The default is `true` and this means that the thumb will be painted
   /// outside of the bounds of the widget if there are no side labels. You can
-  /// wrap [ProgressBar] with a `Padding` widget if your layout needs to leave
+  /// wrap [PlaybackProgressBar] with a `Padding` widget if your layout needs to leave
   /// some extra room for the thumb.
   ///
   /// When set to `false` the thumb will be clamped within the width of the

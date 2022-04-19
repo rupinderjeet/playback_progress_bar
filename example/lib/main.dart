@@ -406,7 +406,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         final progress = durationState?.progress ?? Duration.zero;
         final buffered = durationState?.buffered ?? Duration.zero;
         final total = durationState?.total ?? Duration.zero;
-        return ProgressBar(
+        return PlaybackProgressBar(
           progress: progress,
           buffered: buffered,
           total: total,
