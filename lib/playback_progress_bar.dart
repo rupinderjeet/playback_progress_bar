@@ -79,6 +79,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
     required this.total,
     this.buffered,
     this.onSeek,
+    this.dragEnabled = true,
     this.onDragStart,
     this.onDragUpdate,
     this.onDragEnd,
@@ -125,6 +126,9 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
   /// see [onDragUpdate], where the provided [ThumbDragDetails] has a
   /// `timeStamp` with the seek duration on it.
   final ValueChanged<Duration>? onSeek;
+
+  /// A setting to enable/disable thumb dragging and seeking.
+  final bool dragEnabled;
 
   /// A callback when the user starts to move the thumb.
   ///
@@ -270,6 +274,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       total: total,
       buffered: buffered ?? Duration.zero,
       onSeek: onSeek,
+      dragEnabled: dragEnabled,
       onDragStart: onDragStart,
       onDragUpdate: onDragUpdate,
       onDragEnd: onDragEnd,
@@ -303,6 +308,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       ..total = total
       ..buffered = buffered ?? Duration.zero
       ..onSeek = onSeek
+      ..dragEnabled = dragEnabled
       ..onDragStart = onDragStart
       ..onDragUpdate = onDragUpdate
       ..onDragEnd = onDragEnd
@@ -332,6 +338,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
     properties.add(StringProperty('buffered', buffered.toString()));
     properties.add(ObjectFlagProperty<ValueChanged<Duration>>('onSeek', onSeek,
         ifNull: 'unimplemented'));
+    properties.add(ObjectFlagProperty<bool>('dragEnabled', dragEnabled));
     properties.add(ObjectFlagProperty<ThumbDragStartCallback>(
         'onDragStart', onDragStart,
         ifNull: 'unimplemented'));
@@ -398,6 +405,7 @@ class _RenderProgressBar extends RenderBox {
     required Duration total,
     required Duration buffered,
     ValueChanged<Duration>? onSeek,
+    required bool dragEnabled,
     ThumbDragStartCallback? onDragStart,
     ThumbDragUpdateCallback? onDragUpdate,
     VoidCallback? onDragEnd,
@@ -420,6 +428,7 @@ class _RenderProgressBar extends RenderBox {
         _total = total,
         _buffered = buffered,
         _onSeek = onSeek,
+        _dragEnabled = dragEnabled,
         _onDragStartUserCallback = onDragStart,
         _onDragUpdateUserCallback = onDragUpdate,
         _onDragEndUserCallback = onDragEnd,
@@ -468,6 +477,8 @@ class _RenderProgressBar extends RenderBox {
   }
 
   void _onDragStart(DragStartDetails details) {
+    if (!dragEnabled) return;
+
     _userIsDraggingThumb = true;
     _updateThumbPosition(details.localPosition);
     onDragStart?.call(ThumbDragDetails(
@@ -478,6 +489,8 @@ class _RenderProgressBar extends RenderBox {
   }
 
   void _onDragUpdate(DragUpdateDetails details) {
+    if (!dragEnabled) return;
+
     _updateThumbPosition(details.localPosition);
     onDragUpdate?.call(ThumbDragDetails(
       timeStamp: _currentThumbDuration(),
@@ -487,6 +500,8 @@ class _RenderProgressBar extends RenderBox {
   }
 
   void _onDragEnd(DragEndDetails details) {
+    if (!dragEnabled) return;
+
     onDragEnd?.call();
     onSeek?.call(_currentThumbDuration());
     _finishDrag();
@@ -643,6 +658,17 @@ class _RenderProgressBar extends RenderBox {
       return;
     }
     _onDragStartUserCallback = value;
+  }
+
+  /// A setting to enable/disable thumb dragging and seeking.
+  bool get dragEnabled => _dragEnabled;
+  bool _dragEnabled;
+
+  set dragEnabled(bool value) {
+    if (value == dragEnabled) {
+      return;
+    }
+    _dragEnabled = value;
   }
 
   /// A callback when the thumb is being dragged.
