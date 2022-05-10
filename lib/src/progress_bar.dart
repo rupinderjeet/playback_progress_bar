@@ -241,7 +241,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       thumbGlowRadius: thumbGlowRadius,
       thumbCanPaintOutsideBar: thumbCanPaintOutsideBar,
       timeLabelLocation: timeLabelLocation ?? TimeLabelLocation.below,
-      timeLabelFormat: timeLabelFormat ?? TimeLabelFormat.totalTime,
+      timeLabelFormat: timeLabelFormat ?? TimeLabelFormat(),
       timeLabelTextStyle: textStyle,
       timeLabelPadding: timeLabelPadding,
     );
@@ -275,7 +275,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       ..thumbGlowRadius = thumbGlowRadius
       ..thumbCanPaintOutsideBar = thumbCanPaintOutsideBar
       ..timeLabelLocation = timeLabelLocation ?? TimeLabelLocation.below
-      ..timeLabelFormat = timeLabelFormat ?? TimeLabelFormat.totalTime
+      ..timeLabelFormat = timeLabelFormat ?? TimeLabelFormat()
       ..timeLabelTextStyle = textStyle
       ..timeLabelPadding = timeLabelPadding;
   }
@@ -311,7 +311,8 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
         value: thumbCanPaintOutsideBar));
     properties
         .add(StringProperty('timeLabelLocation', timeLabelLocation.toString()));
-    properties.add(StringProperty('timeLabelFormat', timeLabelFormat.toString()));
+    properties
+        .add(StringProperty('timeLabelFormat', timeLabelFormat.toString()));
     properties
         .add(DiagnosticsProperty('timeLabelTextStyle', timeLabelTextStyle));
     properties.add(DoubleProperty('timeLabelPadding', timeLabelPadding));
@@ -502,19 +503,28 @@ class _RenderProgressBar extends RenderBox {
   }
 
   TextPainter _leftTimeLabel() {
-    final text = _getTimeString(progress);
-    return _layoutText(text);
+    final labelType = timeLabelFormat.leftTimeLabelType;
+    switch (labelType) {
+      case LeftTimeLabelType.elapsedTime:
+        final text = _getTimeString(progress);
+        return _layoutText(text);
+      case LeftTimeLabelType.custom:
+        return _layoutText(timeLabelFormat.leftTimeLabelText ?? "");
+    }
   }
 
   TextPainter _rightTimeLabel() {
-    switch (timeLabelFormat) {
-      case TimeLabelFormat.totalTime:
+    final labelType = timeLabelFormat.rightTimeLabelType;
+    switch (labelType) {
+      case RightTimeLabelType.totalTime:
         final text = _getTimeString(total);
         return _layoutText(text);
-      case TimeLabelFormat.remainingTime:
+      case RightTimeLabelType.remainingTime:
         final remaining = total - progress;
         final text = '-${_getTimeString(remaining)}';
         return _layoutText(text);
+      case RightTimeLabelType.custom:
+        return _layoutText(timeLabelFormat.rightTimeLabelText ?? "");
     }
   }
 

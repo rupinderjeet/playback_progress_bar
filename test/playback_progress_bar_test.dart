@@ -38,12 +38,14 @@ void main() {
         thumbGlowRadius: 50.0,
         thumbCanPaintOutsideBar: false,
         timeLabelLocation: TimeLabelLocation.sides,
-        timeLabelFormat: TimeLabelFormat.remainingTime,
+        timeLabelFormat: TimeLabelFormat(
+            rightTimeLabelType: RightTimeLabelType.remainingTime),
         timeLabelTextStyle: const TextStyle(color: Color(0x00000000)),
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     expect(progressBar.progress, Duration.zero);
@@ -61,7 +63,10 @@ void main() {
     expect(progressBar.thumbGlowRadius, 50.0);
     expect(progressBar.thumbCanPaintOutsideBar, false);
     expect(progressBar.timeLabelLocation, TimeLabelLocation.sides);
-    expect(progressBar.timeLabelFormat, TimeLabelFormat.remainingTime);
+    expect(
+        progressBar.timeLabelFormat,
+        TimeLabelFormat(
+            rightTimeLabelType: RightTimeLabelType.remainingTime));
     expect(progressBar.timeLabelTextStyle,
         const TextStyle(color: Color(0x00000000)));
     expect(progressBar.timeLabelPadding, 0.0);
@@ -79,7 +84,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -99,7 +105,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -119,7 +126,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -139,7 +147,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -158,7 +167,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -179,7 +189,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -201,7 +212,8 @@ void main() {
       ),
     );
 
-    PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+    PlaybackProgressBar progressBar =
+        tester.firstWidget(find.byType(PlaybackProgressBar));
     expect(progressBar, isNotNull);
 
     final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -223,7 +235,8 @@ void main() {
         ),
       );
 
-      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+      PlaybackProgressBar progressBar =
+          tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
       final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -244,7 +257,8 @@ void main() {
         ),
       );
 
-      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+      PlaybackProgressBar progressBar =
+          tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
       final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -265,7 +279,8 @@ void main() {
         ),
       );
 
-      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+      PlaybackProgressBar progressBar =
+          tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
       final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -286,7 +301,8 @@ void main() {
         ),
       );
 
-      PlaybackProgressBar progressBar = tester.firstWidget(find.byType(PlaybackProgressBar));
+      PlaybackProgressBar progressBar =
+          tester.firstWidget(find.byType(PlaybackProgressBar));
       expect(progressBar, isNotNull);
 
       final baseSize = tester.getSize(find.byType(PlaybackProgressBar));
@@ -322,7 +338,8 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
+      await tester.drag(
+          find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(seekCount, 1);
       expect(dragStartCount, 1);
       expect(dragUpdateCount, 2);
@@ -356,7 +373,8 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
+      await tester.drag(
+          find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(onSeekDuration, Duration.zero);
       expect(onDragStartDuration, const Duration(minutes: 2, seconds: 30));
       expect(onDragUpdateDurations[0],
@@ -387,7 +405,8 @@ void main() {
       );
 
       // drag from the middle of the widget to the far left side
-      await tester.drag(find.byType(PlaybackProgressBar), const Offset(-100, 0));
+      await tester.drag(
+          find.byType(PlaybackProgressBar), const Offset(-100, 0));
       expect(onDragStartDetails.globalPosition, const Offset(400.0, 300.0));
       expect(onDragStartDetails.localPosition, const Offset(100.0, 17.0));
       expect(onDragDetails[0].globalPosition, const Offset(380.0, 300.0));

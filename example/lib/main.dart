@@ -62,7 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   late Stream<DurationState> _durationState;
   var _isShowingWidgetOutline = false;
   var _labelLocation = TimeLabelLocation.below;
-  var _labelType = TimeLabelFormat.totalTime;
+  var _labelFormat = TimeLabelFormat();
   TextStyle? _labelStyle;
   var _thumbRadius = 10.0;
   var _labelPadding = 0.0;
@@ -123,7 +123,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                       style: TextStyle(fontSize: 20),
                     ),
                     _labelLocationButtons(),
-                    _labelTypeButtons(),
+                    _labelFormatButtons(),
                     _labelSizeButtons(),
                     _paddingSizeButtons(),
                     const SizedBox(height: 20),
@@ -226,18 +226,20 @@ class _HomeWidgetState extends State<HomeWidget> {
     ]);
   }
 
-  Wrap _labelTypeButtons() {
+  Wrap _labelFormatButtons() {
     return Wrap(children: [
       OutlinedButton(
         child: const Text('total time'),
         onPressed: () {
-          setState(() => _labelType = TimeLabelFormat.totalTime);
+          setState(() => _labelFormat = TimeLabelFormat());
         },
       ),
       OutlinedButton(
         child: const Text('remaining time'),
         onPressed: () {
-          setState(() => _labelType = TimeLabelFormat.remainingTime);
+          setState(() => _labelFormat = TimeLabelFormat(
+            rightTimeLabelType: RightTimeLabelType.remainingTime
+          ));
         },
       ),
     ]);
@@ -429,7 +431,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           thumbRadius: _thumbRadius,
           thumbCanPaintOutsideBar: _thumbCanPaintOutsideBar,
           timeLabelLocation: _labelLocation,
-          timeLabelFormat: _labelType,
+          timeLabelFormat: _labelFormat,
           timeLabelTextStyle: _labelStyle,
           timeLabelPadding: _labelPadding,
         );
