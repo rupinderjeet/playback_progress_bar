@@ -7,8 +7,8 @@ import 'package:flutter/rendering.dart';
 
 import 'bar_cap_shape.dart';
 import 'thumb_drag_detail.dart';
-import 'time_label_location.dart';
 import 'time_label_format.dart';
+import 'time_label_location.dart';
 
 /// A progress bar widget to show or set the location of the currently
 /// playing audio or video content.
@@ -1013,7 +1013,18 @@ class _RenderProgressBar extends RenderBox {
   }
 
   void _drawThumb(Canvas canvas, Size localSize) {
-    final thumbPaint = Paint()..color = thumbColor;
+    final Paint thumbPaint;
+    final thumbGradient = progressBarGradient;
+    if (thumbGradient != null) {
+      thumbPaint = Paint()
+        ..shader = thumbGradient.createShader(Rect.fromPoints(
+          Offset.zero,
+          Offset(localSize.width, localSize.height),
+        ));
+    } else {
+      thumbPaint = Paint()..color = thumbColor;
+    }
+
     final barCapRadius = _barHeight / 2;
     final availableWidth = localSize.width - _barHeight;
     var thumbDx = _thumbValue * availableWidth + barCapRadius;
