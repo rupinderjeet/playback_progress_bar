@@ -8,7 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'bar_cap_shape.dart';
 import 'thumb_drag_detail.dart';
 import 'time_label_location.dart';
-import 'time_label_type.dart';
+import 'time_label_format.dart';
 
 /// A progress bar widget to show or set the location of the currently
 /// playing audio or video content.
@@ -45,7 +45,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
     this.thumbGlowRadius = 30.0,
     this.thumbCanPaintOutsideBar = true,
     this.timeLabelLocation,
-    this.timeLabelType,
+    this.timeLabelFormat,
     this.timeLabelTextStyle,
     this.timeLabelPadding = 0.0,
   }) : super(key: key);
@@ -200,8 +200,8 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
   /// What to display for the time label on the right
   ///
   /// The right time label can show the total time or the remaining time as a
-  /// negative number. The default is [TimeLabelType.totalTime].
-  final TimeLabelType? timeLabelType;
+  /// negative number. The default is [TimeLabelFormat.totalTime].
+  final TimeLabelFormat? timeLabelFormat;
 
   /// The [TextStyle] used by the time labels.
   ///
@@ -241,7 +241,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       thumbGlowRadius: thumbGlowRadius,
       thumbCanPaintOutsideBar: thumbCanPaintOutsideBar,
       timeLabelLocation: timeLabelLocation ?? TimeLabelLocation.below,
-      timeLabelType: timeLabelType ?? TimeLabelType.totalTime,
+      timeLabelFormat: timeLabelFormat ?? TimeLabelFormat.totalTime,
       timeLabelTextStyle: textStyle,
       timeLabelPadding: timeLabelPadding,
     );
@@ -275,7 +275,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
       ..thumbGlowRadius = thumbGlowRadius
       ..thumbCanPaintOutsideBar = thumbCanPaintOutsideBar
       ..timeLabelLocation = timeLabelLocation ?? TimeLabelLocation.below
-      ..timeLabelType = timeLabelType ?? TimeLabelType.totalTime
+      ..timeLabelFormat = timeLabelFormat ?? TimeLabelFormat.totalTime
       ..timeLabelTextStyle = textStyle
       ..timeLabelPadding = timeLabelPadding;
   }
@@ -311,7 +311,7 @@ class PlaybackProgressBar extends LeafRenderObjectWidget {
         value: thumbCanPaintOutsideBar));
     properties
         .add(StringProperty('timeLabelLocation', timeLabelLocation.toString()));
-    properties.add(StringProperty('timeLabelType', timeLabelType.toString()));
+    properties.add(StringProperty('timeLabelFormat', timeLabelFormat.toString()));
     properties
         .add(DiagnosticsProperty('timeLabelTextStyle', timeLabelTextStyle));
     properties.add(DoubleProperty('timeLabelPadding', timeLabelPadding));
@@ -340,7 +340,7 @@ class _RenderProgressBar extends RenderBox {
     double thumbGlowRadius = 30.0,
     bool thumbCanPaintOutsideBar = true,
     required TimeLabelLocation timeLabelLocation,
-    required TimeLabelType timeLabelType,
+    required TimeLabelFormat timeLabelFormat,
     TextStyle? timeLabelTextStyle,
     double timeLabelPadding = 0.0,
   })  : _progress = progress,
@@ -363,7 +363,7 @@ class _RenderProgressBar extends RenderBox {
         _thumbGlowRadius = thumbGlowRadius,
         _thumbCanPaintOutsideBar = thumbCanPaintOutsideBar,
         _timeLabelLocation = timeLabelLocation,
-        _timeLabelType = timeLabelType,
+        _timeLabelFormat = timeLabelFormat,
         _timeLabelTextStyle = timeLabelTextStyle,
         _timeLabelPadding = timeLabelPadding {
     _drag = HorizontalDragGestureRecognizer()
@@ -507,11 +507,11 @@ class _RenderProgressBar extends RenderBox {
   }
 
   TextPainter _rightTimeLabel() {
-    switch (timeLabelType) {
-      case TimeLabelType.totalTime:
+    switch (timeLabelFormat) {
+      case TimeLabelFormat.totalTime:
         final text = _getTimeString(total);
         return _layoutText(text);
-      case TimeLabelType.remainingTime:
+      case TimeLabelFormat.remainingTime:
         final remaining = total - progress;
         final text = '-${_getTimeString(remaining)}';
         return _layoutText(text);
@@ -734,13 +734,13 @@ class _RenderProgressBar extends RenderBox {
   /// What to display for the time label on the right
   ///
   /// The right time label can show the total time or the remaining time as a
-  /// negative number. The default is [TimeLabelType.totalTime].
-  TimeLabelType get timeLabelType => _timeLabelType;
-  TimeLabelType _timeLabelType;
+  /// negative number. The default is [TimeLabelFormat.totalTime].
+  TimeLabelFormat get timeLabelFormat => _timeLabelFormat;
+  TimeLabelFormat _timeLabelFormat;
 
-  set timeLabelType(TimeLabelType value) {
-    if (_timeLabelType == value) return;
-    _timeLabelType = value;
+  set timeLabelFormat(TimeLabelFormat value) {
+    if (_timeLabelFormat == value) return;
+    _timeLabelFormat = value;
     _clearLabelCache();
     markNeedsLayout();
   }

@@ -3,7 +3,7 @@
 /// shown as a negative number.
 ///
 ///
-enum TimeLabelType {
+enum TimeLabelFormat {
   /// The time label on the right shows the total time.
   ///
   /// | -------O---------------- |
